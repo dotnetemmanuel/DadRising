@@ -4,10 +4,55 @@
       box-sizing: border-box;
 }
 
-.image {
-      filter: brightness(0%);
-      width: 300px;
+.image_container {
+      min-width: 300px;
+      max-width: 60vw;
       aspect-ratio: 16/9;
+      display: grid;
+      grid-template-rows: repeat(3 1fr);
+      background-image: url(/images/2-2.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+}
 
+/* .image {
+      width: 100%;
+      aspect-ratio: 16/9;
       overflow: clip;
+} */
+
+.image_container input {
+      background-color: transparent;
+      border: none;
+      font-size: 3rem;
+      color: white;
+}
+
+.button_up {
+      grid-row: 1;
+      grid-column: span 2;
+      width: 50px;
+      justify-self: center;
+      align-self: start;
+
+}
+
+.button_down {
+      grid-row: 3;
+      grid-column: span 2;
+      width: 50px;
+      justify-self: center;
+      align-self: end;
+}
+
+.button_left {
+      grid-row: 2;
+      width: 50px;
+      justify-self: start;
+}
+
+.button_right {
+      grid-row: 2;
+      width: 50px;
+      justify-self: end;
 }

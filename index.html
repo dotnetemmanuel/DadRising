@@ -21,11 +21,24 @@
             ready to crack anyone up!<br>Will you be able to save them in time?<br>Will you be able to survive? Only
             time will
             show... Good luck!</p>
-            <p>Now, when you're ready, turn on the lights!</p>
+      <p>Now, when you're ready, turn on the lights!</p>
 
-            <input type="button" value="Turn On" id="light_switch" class="light_switch" onclick="Lights()">
-<br>
-      <img src="/images/2-2.jpg" alt="" id="image" class="image">
+      <input type="button" value="Turn On" id="light_switch" class="light_switch" onclick="Lights()">
+      <br>
+
+      <!-- style="filter: brightness(0%);" -->
+      <div id="image_container" class="image_container">
+            <input type="button" value="🠭" id="button_up" class="button_up" onclick="GoUp()">
+            <input type="button" value="🠯" id="button_down" class="button_down" onclick="GoDown()">
+            <input type="button" value="🠬" id="button_left" class="button_left" onclick="GoLeft()">
+            <input type="button" value="🠮" id="button_right" class="button_right" onclick="GoRight()">
+
+      </div>
+
+      <table id="game_map" class="game_map" border = 1>
+
+      </table>
+
 
       <script src="/JS/script.js"></script>
 </body>

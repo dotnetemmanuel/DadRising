@@ -8,7 +8,7 @@ const gameMapArr = [
 ];
 
 function RandomizePosition() {
-	const randomPosArray = [0, 1, 3, 4];
+	const randomPosArray = [0, 1, 2, 3, 4];
 	return randomPosArray[Math.floor(Math.random() * randomPosArray.length)];
 }
 
@@ -16,15 +16,15 @@ function RandomizePosition() {
 let player = {
 	posX: 2,
 	posY: 2,
-      name: "You"
+	name: "You",
 };
-
 
 function generateUniquePosition(occupiedPositions) {
 	let posX = RandomizePosition();
 	let posY = RandomizePosition();
 
 	while (
+		(posX === 2 && posY === 2) ||
 		occupiedPositions.some((pos) => pos.posX === posX && pos.posY === posY)
 	) {
 		posX = RandomizePosition();
@@ -39,16 +39,15 @@ let occupiedPositions = [{ posX: player.posX, posY: player.posY }];
 let dad = {
 	...generateUniquePosition(occupiedPositions),
 	image_source: "/images/dad.jpg",
-      name: "Dad",
+	name: "Dad",
 };
 occupiedPositions.push({ posX: dad.posX, posY: dad.posY });
-
 
 // //Position functions
 let mom = {
 	...generateUniquePosition(occupiedPositions),
 	image_source: "/images/mom.jpg",
-      name: "Mom"
+	name: "Mom",
 };
 occupiedPositions.push({ posX: mom.posX, posY: mom.posY });
 
@@ -80,7 +79,6 @@ let child3 = {
 };
 occupiedPositions.push({ posX: child3.posX, posY: child3.posY });
 
-
 function DrawGameMap() {
 	let gameMap = document.getElementById("game_map");
 	gameMap.innerHTML = "";
@@ -109,6 +107,11 @@ function GoUp() {
 	} else {
 		gameMapArr[player.posY][player.posX] = "";
 		player.posY--;
+		if (gameMapArr[player.posY][player.posX] !== "") {
+			console.log(
+				"There is " + gameMapArr[player.posY][player.posX] + " at this index"
+			);
+		}
 		DrawGameMap();
 		console.log(player.posY + " " + player.posX);
 	}
@@ -120,6 +123,11 @@ function GoDown() {
 	} else {
 		gameMapArr[player.posY][player.posX] = "";
 		player.posY++;
+		if (gameMapArr[player.posY][player.posX] !== "") {
+			console.log(
+				"There is " + gameMapArr[player.posY][player.posX] + " at this index"
+			);
+		}
 		DrawGameMap();
 		console.log(player.posY + " " + player.posX);
 	}
@@ -131,6 +139,11 @@ function GoLeft() {
 	} else {
 		gameMapArr[player.posY][player.posX] = "";
 		player.posX--;
+		if (gameMapArr[player.posY][player.posX] !== "") {
+			console.log(
+				"There is " + gameMapArr[player.posY][player.posX] + " at this index"
+			);
+		}
 		DrawGameMap();
 		console.log(player.posY + " " + player.posX);
 	}
@@ -142,10 +155,14 @@ function GoRight() {
 	} else {
 		gameMapArr[player.posY][player.posX] = "";
 		player.posX++;
+		if (gameMapArr[player.posY][player.posX] !== "") {
+			console.log(
+				"There is " + gameMapArr[player.posY][player.posX] + " at this index"
+			);
+		}
 		DrawGameMap();
 		console.log(player.posY + " " + player.posX);
 	}
 }
-
 
 DrawGameMap();

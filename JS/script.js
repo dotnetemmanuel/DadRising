@@ -127,7 +127,7 @@ function checkOccupied() {
 
 		if (gameMapArr[player.posY][player.posX] === "Dad") {
 			message.innerHTML =
-				`Message: Your dad! He is euphoric and knocks you out with his 30 year-old joke:<br>${dadJoke}`;
+				`Message: Your dad! He is euphoric and knocks you out with his 30 year-old joke:<br>${dadJoke}<br>GAME OVER`;
 		}
 	}
 }

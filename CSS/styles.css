@@ -2,9 +2,25 @@
       padding: 0;
       margin: 0;
       box-sizing: border-box;
+      font-family: 'Jost', sans-serif;
+      
+}
+
+body{
+      padding: 50px;
+}
+
+h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+}
+
+.main {
+ 
 }
 
 .image_container {
+      margin: auto;
       min-width: 300px;
       max-width: 500px;
       aspect-ratio: 1;
@@ -12,8 +28,9 @@
       grid-template-rows: repeat(3 1fr);
       background-image: url(/images/rooms/2-2.jpg);
       background-repeat: no-repeat;
-      background-size:cover;
-      
+      background-size: cover;
+      border-radius: 7px;
+
 }
 
 /* .image {
@@ -58,7 +75,7 @@
       justify-self: end;
 }
 
-td{
+td {
       height: 4rem;
       width: 4rem;
       text-align: center;

@@ -4,7 +4,7 @@
 <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="/CSS/style.css">
+      <link rel="stylesheet" href="/CSS/styles.css">
       <title>Family vs Dad Jokes</title>
 </head>
 
@@ -23,21 +23,29 @@
             show... Good luck!</p>
       <br>
 
+      <main class="main">
+            <section id="image_container" class="image_container">
+                  <input type="button" value="🠭" id="button_up" class="button_up" onclick="GoUp()">
+                  <input type="button" value="🠯" id="button_down" class="button_down" onclick="GoDown()">
+                  <input type="button" value="🠬" id="button_left" class="button_left" onclick="GoLeft()">
+                  <input type="button" value="🠮" id="button_right" class="button_right" onclick="GoRight()">
+            </section>
+            <section id="contextual_message" class="contextual_message">Message: </section>
+            <section id="score_section" class="score_section">
+                  <p id="score" class="score"></p>
+            </section>
+            
+      </main>
       <!-- style="filter: brightness(0%);" -->
-      <div id="image_container" class="image_container">
-            <input type="button" value="🠭" id="button_up" class="button_up" onclick="GoUp()">
-            <input type="button" value="🠯" id="button_down" class="button_down" onclick="GoDown()">
-            <input type="button" value="🠬" id="button_left" class="button_left" onclick="GoLeft()">
-            <input type="button" value="🠮" id="button_right" class="button_right" onclick="GoRight()">
 
-      </div>
 
       <table id="game_map" class="game_map" border=1>
 
       </table>
 
-
+<script src="/JS/api.js"></script>
       <script src="/JS/script.js"></script>
+      
 </body>
 
 </html>

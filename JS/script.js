@@ -1,4 +1,4 @@
-//Game Map
+//GAME MAP
 const gameMapArr = [
 	["", "", "", "", ""],
 	["", "", "", "", ""],
@@ -7,19 +7,20 @@ const gameMapArr = [
 	["", "", "", "", ""],
 ];
 
-//Variables
+// VARIABLES
 let player;
 let dad;
 let mom;
 let child1;
 let child2;
-let child3;
+let cat;
 let partner;
 let occupiedPositions;
 let score = 0;
 
-//Event listeners
+//EVENT LISTENERS
 document.getElementById("score").innerHTML = "Score: " + score;
+
 let buttonUp = document.getElementById("button_up");
 buttonUp.addEventListener("click", GoUp);
 
@@ -32,16 +33,64 @@ buttonLeft.addEventListener("click", GoLeft);
 let buttonRight = document.getElementById("button_right");
 buttonRight.addEventListener("click", GoRight);
 
+// FUNCTIONS
+function ChangeImage() {
+	let roomImage = document.getElementById("room_image");
+	let playerPosition = [player.posY, player.posX].toString();
+	let characterImage = document.getElementById("character_image");
 
-function ChangeImage(){
-      let i
+	let imageMap = {
+		"0,0": "/images/rooms/0-0.jpg",
+		"0,1": "/images/rooms/0-1.jpg",
+		"0,2": "/images/rooms/0-2.jpg",
+		"0,3": "/images/rooms/0-3.jpg",
+		"0,4": "/images/rooms/0-4.jpg",
+		"1,0": "/images/rooms/1-0.jpg",
+		"1,1": "/images/rooms/1-1.jpg",
+		"1,2": "/images/rooms/1-2.jpg",
+		"1,3": "/images/rooms/1-3.jpg",
+		"1,4": "/images/rooms/1-4.jpg",
+		"2,0": "/images/rooms/2-0.jpg",
+		"2,1": "/images/rooms/2-1.jpg",
+		"2,2": "/images/rooms/2-2.jpg",
+		"2,3": "/images/rooms/2-3.jpg",
+		"2,4": "/images/rooms/2-4.jpg",
+		"3,0": "/images/rooms/3-0.jpg",
+		"3,1": "/images/rooms/3-1.jpg",
+		"3,2": "/images/rooms/3-2.jpg",
+		"3,3": "/images/rooms/3-3.jpg",
+		"3,4": "/images/rooms/3-4.jpg",
+		"4,0": "/images/rooms/4-0.jpg",
+		"4,1": "/images/rooms/4-1.jpg",
+		"4,2": "/images/rooms/4-2.jpg",
+		"4,3": "/images/rooms/4-3.jpg",
+		"4,4": "/images/rooms/4-4.jpg",
+	};
+
+	if (imageMap[playerPosition]) {
+		roomImage.style.transition = "opacity 1200ms ease-in-out";
+		roomImage.style.opacity = "0";
+		setTimeout(() => {
+			roomImage.setAttribute("src", imageMap[playerPosition]);
+			roomImage.style.opacity = "1";
+
+			if (gameMapArr[player.posY][player.posX] === "Dad") {
+				characterImage.style.transition = "opacity 1200ms ease-in-out";
+				characterImage.style.opacity = "0";
+				setTimeout(() => {
+					characterImage.setAttribute("src", "/images/characters/dad.png");
+					characterImage.style.opacity = "1";
+				}, 1200);
+			}
+		}, 1200);
+	}
 }
 function RandomizePosition() {
 	const randomPosArray = [0, 1, 2, 3, 4];
 	return randomPosArray[Math.floor(Math.random() * randomPosArray.length)];
 }
 
-function generateUniquePosition(occupiedPositions) {
+function GenerateUniquePosition(occupiedPositions) {
 	let posX = RandomizePosition();
 	let posY = RandomizePosition();
 
@@ -66,46 +115,46 @@ function PlaceCharacters() {
 	occupiedPositions = [{ posX: player.posX, posY: player.posY }];
 
 	dad = {
-		...generateUniquePosition(occupiedPositions),
+		...GenerateUniquePosition(occupiedPositions),
 		image_source: "/images/dad.jpg",
 		name: "Dad",
 	};
 	occupiedPositions.push({ posX: dad.posX, posY: dad.posY });
 
 	mom = {
-		...generateUniquePosition(occupiedPositions),
+		...GenerateUniquePosition(occupiedPositions),
 		image_source: "/images/mom.jpg",
 		name: "Mom",
 	};
 	occupiedPositions.push({ posX: mom.posX, posY: mom.posY });
 
 	partner = {
-		...generateUniquePosition(occupiedPositions),
+		...GenerateUniquePosition(occupiedPositions),
 		image_source: "/images/partner.jpg",
 		name: "Kattis",
 	};
 	occupiedPositions.push({ posX: partner.posX, posY: partner.posY });
 
 	child1 = {
-		...generateUniquePosition(occupiedPositions),
+		...GenerateUniquePosition(occupiedPositions),
 		image_source: "/images/child1.jpg",
 		name: "Saga",
 	};
 	occupiedPositions.push({ posX: child1.posX, posY: child1.posY });
 
 	child2 = {
-		...generateUniquePosition(occupiedPositions),
+		...GenerateUniquePosition(occupiedPositions),
 		image_source: "/images/child2.jpg",
 		name: "Léon",
 	};
 	occupiedPositions.push({ posX: child2.posX, posY: child2.posY });
 
-	child3 = {
-		...generateUniquePosition(occupiedPositions),
+	cat = {
+		...GenerateUniquePosition(occupiedPositions),
 		image_source: "/images/child3.jpg",
 		name: "Charlie",
 	};
-	occupiedPositions.push({ posX: child3.posX, posY: child3.posY });
+	occupiedPositions.push({ posX: cat.posX, posY: cat.posY });
 }
 
 function DrawGameMap() {
@@ -117,7 +166,7 @@ function DrawGameMap() {
 	gameMapArr[partner.posY][partner.posX] = partner.name;
 	gameMapArr[child1.posY][child1.posX] = child1.name;
 	gameMapArr[child2.posY][child2.posX] = child2.name;
-	gameMapArr[child3.posY][child3.posX] = child3.name;
+	gameMapArr[cat.posY][cat.posX] = cat.name;
 
 	for (let i = 0; i < gameMapArr.length; i++) {
 		let mapRows = document.createElement("tr");
@@ -130,12 +179,13 @@ function DrawGameMap() {
 	}
 }
 
-function checkOccupied() {
+function CheckOccupied() {
 	let message = document.getElementById("contextual_message");
+
 	if (gameMapArr[player.posY][player.posX] !== "") {
 		if (gameMapArr[player.posY][player.posX] !== "Dad") {
 			score++;
-			message.innerHTML = `You have found and saved ${
+			message.innerHTML = `Message: You have found and saved ${
 				gameMapArr[player.posY][player.posX]
 			}!`;
 			document.getElementById("score").innerHTML = `Score: ${score}`;
@@ -147,14 +197,14 @@ function checkOccupied() {
 	}
 }
 
-
 function GoUp() {
 	if (player.posY <= 0) {
 		player.posY = player.posY;
 	} else {
 		gameMapArr[player.posY][player.posX] = "";
 		player.posY--;
-		checkOccupied();
+		ChangeImage();
+		CheckOccupied();
 		DrawGameMap();
 		console.log(player.posY + " " + player.posX);
 	}
@@ -166,7 +216,8 @@ function GoDown() {
 	} else {
 		gameMapArr[player.posY][player.posX] = "";
 		player.posY++;
-		checkOccupied();
+		ChangeImage();
+		CheckOccupied();
 		DrawGameMap();
 		console.log(player.posY + " " + player.posX);
 	}
@@ -178,7 +229,8 @@ function GoLeft() {
 	} else {
 		gameMapArr[player.posY][player.posX] = "";
 		player.posX--;
-		checkOccupied();
+		ChangeImage();
+		CheckOccupied();
 		DrawGameMap();
 		console.log(player.posY + " " + player.posX);
 	}
@@ -190,11 +242,13 @@ function GoRight() {
 	} else {
 		gameMapArr[player.posY][player.posX] = "";
 		player.posX++;
-		checkOccupied();
+		ChangeImage();
+		CheckOccupied();
 		DrawGameMap();
 		console.log(player.posY + " " + player.posX);
 	}
 }
 
+// FUNCTION CALLS ON PAGE LOAD
 PlaceCharacters();
 DrawGameMap();

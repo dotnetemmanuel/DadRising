@@ -23,39 +23,39 @@ h1 {
 }
 
 .main {
+      position: relative;
       display: grid;
       grid-template-rows: repeat(5 1fr);
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(200px 500px) 200px;
 }
 
 .image_container {
-      display: grid;
+       display: grid;
       grid-template-rows: subgrid;
+      grid-template-columns: auto 1fr auto;
       margin: auto;
-
-
       grid-row: 2;
-
-      
-
-      /* display: grid;
-      grid-template-rows: repeat(3 1fr);
-            border-radius: 7px; */
-
+      grid-column: 1;
 }
 
-.room_image {
-      min-width: 200px;
-            max-width: 500px;
-      
-      box-shadow: 0px 46px 24px -23px rgba(66, 68, 90, 0.28);
-}
 
-/* .image {
+.room_image{
+      
+      grid-column: 2;
       width: 100%;
-      aspect-ratio: 16/9;
-      overflow: clip;
-} */
+            max-width: 500px;
+      box-shadow: 36px 39px 57px 3px rgba(67, 69, 91, 0.42);
+            ;
+}
+.character_image{
+      opacity: 0;
+      align-self: flex-end;
+      justify-self: center;
+      grid-column: 2;
+      width: 80%;
+            max-width: 500px;
+}
+
 
 .main input {
 
@@ -67,7 +67,7 @@ h1 {
 
 .button_up {
       grid-row: 1;
-      
+grid-column: 1;
       width: 50px;
       justify-self: center;
       align-self: end;
@@ -76,33 +76,42 @@ h1 {
 
 .button_down {
       grid-row: 3;
-      
+      grid-column: 1;
       width: 50px;
       justify-self: center;
       align-self: start;
 }
 
 .button_left {
-
+grid-row: 1;
+      grid-column: 1;
       width: 50px;
       margin-right: 1.2rem;
 
 }
 
 .button_right {
-      grid-row: 2;
+      grid-row: 1;
       grid-column: 3;
       width: 50px;
       margin-left: 1.2rem;
 
 }
 
-.contextual_message {
-      grid-row: 4;
+.game_session {
+      width: 200px;
+      grid-row: 2;
+      grid-column: 2;
+      display: grid;
+
 }
 
-.score_section {
-      grid-row: 5;
+footer {
+      margin-top: 1.5rem;
+}
+
+.game_map{
+      margin-top: 3rem;
 }
 
 td {
@@ -110,3 +119,7 @@ td {
       width: 4rem;
       text-align: center;
 }
+
+
+
+

@@ -21,35 +21,41 @@
             however happened and your dad has been rehearsing his classical jokes for weeks, waiting for a moment of
             weakness to knock you or worse, your mom, partner or children, out,
             with a joke you've heard your whole life. He could be lurking
-            anywhere, ready to crack anyone up! Will you be able to save them in time? Will you be able to save yourself?</p>
+            anywhere, ready to crack anyone up! Will you be able to save them in time? Will you be able to save
+            yourself?</p>
       <br>
 
       <main class="main">
             <input type="button" value="🞁" id="button_up" class="button_up">
             <input type="button" value="🞃" id="button_down" class="button_down">
-            
+
             <section id="image_container" class="image_container">
                   <input type="button" value="🞀" id="button_left" class="button_left">
-                  
-                  <img id="room_image" class="room_image" src="/images/rooms/2-2.jpg" alt="">
+
+                  <img id="room_image" class="room_image" src="/images/rooms/2-2.jpg" alt="Room">
+                  <img id="character_image" class="character_image" src="" alt="Character" >
                   <input type="button" value="🞂" id="button_right" class="button_right">
             </section>
-            <section id="contextual_message" class="contextual_message">Message: </section>
-            <section id="score_section" class="score_section">
-                  <p id="score" class="score"></p>
+            <section id="game_session" class="game_session">
+                  <section id="contextual_message" class="contextual_message">Message:<br>
+
+                  </section>
+                  <section id="score_section" class="score_section">
+                        <p id="score" class="score"></p>
+                  </section>
             </section>
-            
+
       </main>
       <!-- style="filter: brightness(0%);" -->
-
+      <footer><p>This game is a tribute to my dad, Robert, who has been delighting us with his signature jokes for 30 years.</p></footer>
 
       <table id="game_map" class="game_map" border=1>
 
       </table>
 
-<!-- <script src="/JS/api.js"></script> -->
+      <script src="/JS/api.js"></script>
       <script src="/JS/script.js"></script>
-      
+
 </body>
 
 </html>

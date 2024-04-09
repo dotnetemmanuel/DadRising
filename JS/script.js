@@ -74,13 +74,19 @@ function ChangeImage() {
 			roomImage.setAttribute("src", imageMap[playerPosition]);
 			roomImage.style.opacity = "1";
 
-			if (gameMapArr[player.posY][player.posX] === "Dad") {
+			if (
+				gameMapArr[player.posY][player.posX] === gameMapArr[dad.posY][dad.posX]
+			) {
 				characterImage.style.transition = "opacity 1200ms ease-in-out";
 				characterImage.style.opacity = "0";
 				setTimeout(() => {
 					characterImage.setAttribute("src", "/images/characters/dad.png");
 					characterImage.style.opacity = "1";
 				}, 1200);
+			} else {
+				characterImage.style.transition = "";
+				characterImage.style.opacity = "0";
+				characterImage.setAttribute("src", "");
 			}
 		}, 1200);
 	}
@@ -180,21 +186,29 @@ function DrawGameMap() {
 }
 
 function CheckOccupied() {
-	let message = document.getElementById("contextual_message");
+	let message = document.getElementById("message");
 
 	if (gameMapArr[player.posY][player.posX] !== "") {
 		if (gameMapArr[player.posY][player.posX] !== "Dad") {
 			score++;
-			message.innerHTML = `Message: You have found and saved ${
+			message.innerHTML = `<br>You have found and saved ${
 				gameMapArr[player.posY][player.posX]
 			}!`;
 			document.getElementById("score").innerHTML = `Score: ${score}`;
 		}
 
 		if (gameMapArr[player.posY][player.posX] === "Dad") {
-			message.innerHTML = `Message: Your dad! He is euphoric and knocks you out with his 30 year-old joke:<br>${dadJoke}<br>GAME OVER`;
+			message.style.transition = "opacity 2400ms ease-in-out";
+			message.style.opacity = "0";
+			setTimeout(() => {
+				message.innerHTML = `<br> Your dad! He is euphoric and knocks you out with his 30 year-old joke:<br><br>${dadJoke}<br><br>GAME OVER`;
+				message.style.opacity = "1";
+			}, 2400);
 		}
 	}
+      else{
+            message.innerHTML = "";
+      }
 }
 
 function GoUp() {

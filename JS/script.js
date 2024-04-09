@@ -34,7 +34,7 @@ buttonRight.addEventListener("click", GoRight);
 
 
 function ChangeImage(){
-
+      let i
 }
 function RandomizePosition() {
 	const randomPosArray = [0, 1, 2, 3, 4];

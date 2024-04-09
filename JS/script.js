@@ -7,9 +7,9 @@ const gameMapArr = [
 	["", "", "", "", ""],
 ];
 
+//Variables
 let player;
 let dad;
-
 let mom;
 let child1;
 let child2;
@@ -17,8 +17,25 @@ let child3;
 let partner;
 let occupiedPositions;
 let score = 0;
-document.getElementById("score").innerHTML = "Score: " + score;
 
+//Event listeners
+document.getElementById("score").innerHTML = "Score: " + score;
+let buttonUp = document.getElementById("button_up");
+buttonUp.addEventListener("click", GoUp);
+
+let buttonDown = document.getElementById("button_down");
+buttonDown.addEventListener("click", GoDown);
+
+let buttonLeft = document.getElementById("button_left");
+buttonLeft.addEventListener("click", GoLeft);
+
+let buttonRight = document.getElementById("button_right");
+buttonRight.addEventListener("click", GoRight);
+
+
+function ChangeImage(){
+
+}
 function RandomizePosition() {
 	const randomPosArray = [0, 1, 2, 3, 4];
 	return randomPosArray[Math.floor(Math.random() * randomPosArray.length)];
@@ -51,11 +68,10 @@ function PlaceCharacters() {
 	dad = {
 		...generateUniquePosition(occupiedPositions),
 		image_source: "/images/dad.jpg",
-		name: "Dad",		
+		name: "Dad",
 	};
 	occupiedPositions.push({ posX: dad.posX, posY: dad.posY });
 
-	// //Position functions
 	mom = {
 		...generateUniquePosition(occupiedPositions),
 		image_source: "/images/mom.jpg",
@@ -126,11 +142,11 @@ function checkOccupied() {
 		}
 
 		if (gameMapArr[player.posY][player.posX] === "Dad") {
-			message.innerHTML =
-				`Message: Your dad! He is euphoric and knocks you out with his 30 year-old joke:<br>${dadJoke}<br>GAME OVER`;
+			message.innerHTML = `Message: Your dad! He is euphoric and knocks you out with his 30 year-old joke:<br>${dadJoke}<br>GAME OVER`;
 		}
 	}
 }
+
 
 function GoUp() {
 	if (player.posY <= 0) {
@@ -182,4 +198,3 @@ function GoRight() {
 
 PlaceCharacters();
 DrawGameMap();
-

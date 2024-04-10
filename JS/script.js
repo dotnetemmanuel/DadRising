@@ -17,6 +17,8 @@ let cat;
 let partner;
 let occupiedPositions;
 let score = 0;
+let gameMap = document.getElementById("game_map");
+gameMap.style.display = "none";
 
 //EVENT LISTENERS
 document.getElementById("score").innerHTML = "Score: " + score;
@@ -33,7 +35,27 @@ buttonLeft.addEventListener("click", GoLeft);
 let buttonRight = document.getElementById("button_right");
 buttonRight.addEventListener("click", GoRight);
 
+let showMap = document.getElementById("show_map");
+showMap.addEventListener("click", ShowMap);
+
+let replay = document.getElementById("replay");
+replay.addEventListener("click", Reload);
+
 // FUNCTIONS
+function Reload() {
+	window.location.reload();
+}
+
+function ShowMap() {
+	if (gameMap.style.display === "none") {
+		gameMap.style.display = "";
+		showMap.setAttribute("value", "Hide map");
+	} else {
+		gameMap.style.display = "none";
+		showMap.setAttribute("value", "Show map");
+	}
+}
+
 function ChangeImage() {
 	let roomImage = document.getElementById("room_image");
 	let playerPosition = [player.posY, player.posX].toString();
@@ -70,23 +92,89 @@ function ChangeImage() {
 	if (imageMap[playerPosition]) {
 		roomImage.style.transition = "opacity 1200ms ease-in-out";
 		roomImage.style.opacity = "0";
+		characterImage.style.transition = "opacity 1200ms ease-in-out ";
+		characterImage.style.opacity = "0";
+
 		setTimeout(() => {
 			roomImage.setAttribute("src", imageMap[playerPosition]);
 			roomImage.style.opacity = "1";
+			roomImage.style.filter = "";
+			characterImage.style.transition = "";
+			characterImage.setAttribute("src", "");
 
 			if (
-				gameMapArr[player.posY][player.posX] === gameMapArr[dad.posY][dad.posX]
+				gameMapArr[player.posY][player.posX] === gameMapArr[mom.posY][mom.posX]
 			) {
 				characterImage.style.transition = "opacity 1200ms ease-in-out";
+				roomImage.style.transition = "opacity 1200ms ease-in-out";
 				characterImage.style.opacity = "0";
+
 				setTimeout(() => {
-					characterImage.setAttribute("src", "/images/characters/dad.png");
+					characterImage.setAttribute("src", "/images/characters/mom.png");
 					characterImage.style.opacity = "1";
+					characterImage.style.zIndex = 4;
+					roomImage.style.filter = "saturate(.2)";
+					roomImage.style.filter += "blur(2px)";
 				}, 1200);
-			} else {
-				characterImage.style.transition = "";
+			} else if (
+				gameMapArr[player.posY][player.posX] ===
+				gameMapArr[child1.posY][child1.posX]
+			) {
+				characterImage.style.transition = "opacity 1200ms ease-in-out";
+				roomImage.style.transition = "opacity 1200ms ease-in-out";
 				characterImage.style.opacity = "0";
-				characterImage.setAttribute("src", "");
+
+				setTimeout(() => {
+					characterImage.setAttribute("src", "/images/characters/child1.png");
+					characterImage.style.opacity = "1";
+					characterImage.style.zIndex = 4;
+					roomImage.style.filter = "saturate(.2)";
+					roomImage.style.filter += "blur(2px)";
+				}, 1200);
+			} else if (
+				gameMapArr[player.posY][player.posX] ===
+				gameMapArr[child2.posY][child2.posX]
+			) {
+				characterImage.style.transition = "opacity 1200ms ease-in-out";
+				roomImage.style.transition = "opacity 1200ms ease-in-out";
+				characterImage.style.opacity = "0";
+
+				setTimeout(() => {
+					characterImage.setAttribute("src", "/images/characters/child2.png");
+					characterImage.style.opacity = "1";
+					characterImage.style.zIndex = 4;
+					roomImage.style.filter = "saturate(.2)";
+					roomImage.style.filter += "blur(2px)";
+				}, 1200);
+			} else if (
+				gameMapArr[player.posY][player.posX] === gameMapArr[cat.posY][cat.posX]
+			) {
+				characterImage.style.transition = "opacity 1200ms ease-in-out";
+				roomImage.style.transition = "opacity 1200ms ease-in-out";
+				characterImage.style.opacity = "0";
+
+				setTimeout(() => {
+					characterImage.setAttribute("src", "/images/characters/cat.png");
+					characterImage.style.opacity = "1";
+					characterImage.style.zIndex = 4;
+					roomImage.style.filter = "saturate(.2)";
+					roomImage.style.filter += "blur(2px)";
+				}, 1200);
+			} else if (
+				gameMapArr[player.posY][player.posX] ===
+				gameMapArr[partner.posY][partner.posX]
+			) {
+				characterImage.style.transition = "opacity 1200ms ease-in-out";
+				roomImage.style.transition = "opacity 1200ms ease-in-out";
+				characterImage.style.opacity = "0";
+
+				setTimeout(() => {
+					characterImage.setAttribute("src", "/images/characters/partner.png");
+					characterImage.style.opacity = "1";
+					characterImage.style.zIndex = 4;
+					roomImage.style.filter = "saturate(.2)";
+					roomImage.style.filter += "blur(2px)";
+				}, 1200);
 			}
 		}, 1200);
 	}
@@ -167,6 +255,7 @@ function DrawGameMap() {
 	let gameMap = document.getElementById("game_map");
 	gameMap.innerHTML = "";
 	gameMapArr[player.posY][player.posX] = player.name;
+
 	gameMapArr[dad.posY][dad.posX] = dad.name;
 	gameMapArr[mom.posY][mom.posX] = mom.name;
 	gameMapArr[partner.posY][partner.posX] = partner.name;
@@ -180,6 +269,9 @@ function DrawGameMap() {
 			let cellData = document.createElement("td");
 			cellData.textContent = gameMapArr[i][j];
 			mapRows.appendChild(cellData);
+			if (i === player.posY && j === player.posX) {
+				cellData.style.background = "var(--cloudy-apple-gradient)";
+			}
 		}
 		gameMap.appendChild(mapRows);
 	}
@@ -187,28 +279,37 @@ function DrawGameMap() {
 
 function CheckOccupied() {
 	let message = document.getElementById("message");
+	let overlay = document.getElementById("overlay");
+	let finalScore = document.getElementById("final_score");
+	let scoreCount = document.getElementById("score");
 
 	if (gameMapArr[player.posY][player.posX] !== "") {
 		if (gameMapArr[player.posY][player.posX] !== "Dad") {
 			score++;
-			message.innerHTML = `<br>You have found and saved ${
-				gameMapArr[player.posY][player.posX]
-			}!`;
-			document.getElementById("score").innerHTML = `Score: ${score}`;
-		}
-
-		if (gameMapArr[player.posY][player.posX] === "Dad") {
 			message.style.transition = "opacity 2400ms ease-in-out";
 			message.style.opacity = "0";
 			setTimeout(() => {
-				message.innerHTML = `<br> Your dad! He is euphoric and knocks you out with his 30 year-old joke:<br><br>${dadJoke}<br><br>GAME OVER`;
+				message.innerHTML = `<br>You have found and saved ${
+					gameMapArr[player.posY][player.posX]
+				}!`;
 				message.style.opacity = "1";
+				scoreCount.innerHTML = `Score: ${score}`;
 			}, 2400);
 		}
+
+		if (
+			gameMapArr[player.posY][player.posX] === gameMapArr[dad.posY][dad.posX]
+		) {
+			overlay.style.transition = "opacity 2400ms ease-in-out";
+
+			setTimeout(() => {
+				overlay.style.display = "grid";
+				finalScore.innerHTML = score;
+			}, 2400);
+		}
+	} else {
+		message.innerHTML = "";
 	}
-      else{
-            message.innerHTML = "";
-      }
 }
 
 function GoUp() {

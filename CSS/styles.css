@@ -3,18 +3,23 @@
       --dark-grey: #363636
 }
 
+/* GENERAL STYLING */
+
 * {
       padding: 0;
       margin: 0;
       box-sizing: border-box;
       font-family: 'Jost', sans-serif;
-
 }
 
 body {
-      padding: 50px;
+      padding: 20px 50px;
       background: var(--cloudy-apple-gradient);
-      color: var(--dark-grey)
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: var(--dark-grey);
+      min-height: 100vh;
+      text-align: justify;
 }
 
 h1 {
@@ -22,43 +27,117 @@ h1 {
       margin-bottom: 2rem;
 }
 
+/* GAME OVER POP UP */
+
+.overlay {
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(8px);
+      z-index: 1;
+}
+
+.game_over {
+      display: grid;
+      grid-template-columns: repeat(2 auto);
+      grid-template-rows: repeat(2, auto);
+      row-gap: 1.5rem;
+      column-gap: 0;
+      padding: 3rem;
+      background: var(--cloudy-apple-gradient);
+}
+
+.dad {
+      grid-column: 1;
+      grid-row: 1;
+      width: 80%;
+      justify-self: start;
+}
+
+.game_over_message {
+      grid-column: 2;
+      grid-row: 1;
+      font-size: 1.5rem
+}
+
+.game_over_header {
+      font-size: 3.5rem;
+      grid-row: 2;
+      grid-column: 1 / span 2;
+      justify-self: center;
+      margin: 0;
+}
+
+.final_score_header {
+      grid-row: 3;
+      grid-column: 1/span 2;
+      justify-self: center;
+      font-size: 2rem;
+}
+
+.replay {
+      grid-column: 1 / span 2;
+      grid-row: 4;
+      width: 90px;
+      height: 40px;
+      justify-self: center;
+      font-family: "Jost", sans-serif;
+      font-weight: 400;
+      background-color: transparent;
+      border: 2px solid var(--dark-grey);
+      border-radius: 5px;
+      margin-top: 1.5rem;
+}
+
+.replay:hover {
+      background-color: var(--dark-grey);
+      border: none;
+      color: #e3eeff;
+}
+
+/* MAIN */
+
 .main {
       position: relative;
       display: grid;
       grid-template-rows: repeat(3 1fr);
-      grid-template-columns: minmax(200px 500px) 200px;
+      grid-template-columns: minmax(200px 500px) 1fr;
+      column-gap: 2rem;
 }
 
+
 .image_container {
-       display: grid;
+      display: grid;
       grid-template-rows: subgrid;
-      grid-template-columns: auto 1fr auto;
-      margin: auto;
+      grid-template-columns: 3rem 1fr 3rem;
       grid-row: 2;
       grid-column: 1;
 }
 
 
-.room_image{
-      
+.room_image {
+      justify-self: center;
       grid-column: 2;
       width: 100%;
-            max-width: 500px;
+      min-width: 250px;
+      max-width: 450px;
       box-shadow: 36px 39px 57px 3px rgba(67, 69, 91, 0.42);
-            ;
+      border-radius: 5px;
 }
-.character_image{
+
+.character_image {
       opacity: 0;
       align-self: flex-end;
       justify-self: center;
       grid-column: 2;
-      width: 80%;
-            max-width: 500px;
+      max-width: 350px;
 }
 
-
 .main input {
-
       background-color: transparent;
       border: none;
       font-size: 3rem;
@@ -71,7 +150,6 @@ h1 {
       width: 50px;
       justify-self: center;
       align-self: end;
-
 }
 
 .button_down {
@@ -83,35 +161,37 @@ h1 {
 }
 
 .button_left {
-grid-row: 1;
+      grid-row: 1;
       grid-column: 1;
       width: 50px;
-      margin-right: 1.2rem;
-
+      justify-self: end;
 }
 
 .button_right {
       grid-row: 1;
       grid-column: 3;
       width: 50px;
-      margin-left: 1.2rem;
-
+      justify-self: start;
 }
 
 .game_session {
-      width: 200px;
+      width: 400px;
       grid-row: 2;
       grid-column: 2;
-      
-
+      box-shadow: 36px 39px 57px 3px rgba(67, 69, 91, 0.42);
+      border-radius: 5px;
+      padding: 1.5rem
 }
+
+/* FOOTER */
 
 footer {
-      margin-top: 1.5rem;
+      margin-top: .7rem;
 }
 
-.game_map{
-      margin-top: 3rem;
+.game_map {
+      margin-top: 2rem;
+
 }
 
 td {
@@ -120,6 +200,146 @@ td {
       text-align: center;
 }
 
+.show_map {
+      margin-top: 2rem;
+      width: 90px;
+      height: 40px;
+      justify-self: center;
+      font-family: "Jost", sans-serif;
+      font-weight: 400;
+      background-color: transparent;
+      border: 2px solid var(--dark-grey);
+      border-radius: 5px;
+}
 
+.show_map:hover {
+      background-color: var(--dark-grey);
+      border: none;
+      color: #e3eeff;
+      ;
+}
 
+/* MEDIA QUERIES */
 
+@media (max-width:880px) {
+
+      body {
+            width: 100%;
+            height: auto;
+
+      }
+
+      .title {
+            font-size: 1.5rem;
+      }
+
+      p,
+      .contextual_message {
+            font-size: .9rem;
+      }
+
+      .main {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 3rem 1fr 3rem 1fr;
+            margin: 2.5rem;
+            justify-content: center;
+      }
+
+      .image_container {
+            display: grid;
+            grid-template-rows: subgrid;
+            grid-column: 1;
+            grid-row: 2;
+      }
+
+      .room_image {
+            grid-row: 2;
+      }
+
+      .character_image {
+            max-width: 80%;
+      }
+
+      .game_session {
+            justify-self: center;
+            grid-column: 1;
+            grid-row: 4;
+            width: 80%;
+            margin-top: 2.5rem;
+      }
+
+      .button_up {
+            grid-row: 1;
+      }
+
+      .button_down {
+            align-self: start;
+            grid-row: 3;
+      }
+
+      .button_left {
+            grid-row: 2;
+      }
+
+      .button-right {
+            grid-row: 2;
+      }
+
+      .map_button {
+            display: grid;
+            justify-content: center;
+      }
+
+      .game_map {
+            height: 100%;
+            width: 100%;
+            aspect-ratio: 1;
+      }
+
+      td {
+            height: 2.5rem;
+            width: 2.5rem;
+      }
+}
+
+@media (max-width:700px) {
+      .game_over {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2 1fr) repeat(3 auto);
+      }
+
+      .dad {
+            justify-self: center;
+            grid-column: 1;
+            grid-row: 1;
+            width: 200px;
+      }
+
+      .game_over_message {
+            grid-row: 2;
+            grid-column: 1;
+            font-size: 1rem;
+      }
+
+      .joke {
+            text-align: center;
+      }
+
+      .game_over_header {
+            grid-row: 3;
+            font-size: 2rem;
+            margin-bottom: 0;
+      }
+
+      .final_score_header {
+            grid-row: 4;
+            font-size: 1.75rem;
+      }
+
+      .replay {
+            ;
+            grid-row: 5;
+      }
+}

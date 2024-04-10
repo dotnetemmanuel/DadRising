@@ -10,11 +10,25 @@
             rel="stylesheet">
       <link rel="stylesheet" href="/CSS/styles.css">
       <title>Family vs Dad Jokes</title>
+      <script src="/JS/api.js"></script>
 </head>
 
-
 <body>
-      <h1>Dad Rising: A Family Adventure</h1>
+
+      <div id="overlay" class="overlay" style="display: none">
+            <section id="game_over" class="game_over">
+                  <img src="/images/characters/dad.png" alt="" id="dad" class="dad">
+                  <p id="game_over_message" class="game_over_message">Your dad! He is euphoric and knocks you out with a
+                        30 year-old joke:<br><br><span id="joke" class="joke"></span></p>
+                  <br>
+                  <h1 id="game_over_header" class="game_over_header">Game Over</h1>
+
+                  <p id="final_score_header" class="final_score_header">Final score: <span id="final_score"
+                              class="final_score"></span> </p>
+                  <input type="button" value="Play again" id="replay" class="replay">
+            </section>
+      </div>
+      <h1 id="title" class="title">Dad Rising: A Family Adventure</h1>
       <p>Hello, Emmanuel!</p>
       <p>You have now arrived at the family's summer house. Your parents will stay here with you for a few weeks. The
             inevitable has
@@ -23,36 +37,46 @@
             with a joke you've heard your whole life. He could be lurking
             anywhere, ready to crack anyone up! Will you be able to save them in time? Will you be able to save
             yourself?</p>
-      <br>
+
 
       <main class="main">
             <input type="button" value="🞁" id="button_up" class="button_up">
             <input type="button" value="🞃" id="button_down" class="button_down">
 
+
             <section id="image_container" class="image_container">
                   <input type="button" value="🞀" id="button_left" class="button_left">
 
                   <img id="room_image" class="room_image" src="/images/rooms/2-2.jpg" alt="Room">
-                  <img id="character_image" class="character_image" src="" alt="Character" >
+                  <img id="character_image" class="character_image" src="" alt="Character">
                   <input type="button" value="🞂" id="button_right" class="button_right">
             </section>
             <section id="game_session" class="game_session">
                   <section id="score_section" class="score_section">
                         <p id="score" class="score"></p>
                   </section>
-                  <section id="contextual_message" class="contextual_message">Message:<br><p id="message" class=""></p></section>
-                  
+                  <br>
+                  <section id="contextual_message" class="contextual_message">Message:<br>
+                        <p id="message" class="message"></p>
+                  </section>
             </section>
 
       </main>
       <!-- style="filter: brightness(0%);" -->
-      <footer><p>This game is a tribute to my dad, Robert, who has been delighting us with his signature jokes for 30 years.</p></footer>
+      <footer>
+            <p>This game is a tribute to my dad, Robert, who has been delighting us with his signature jokes for 30 over
+                  years.</p>
+      </footer>
+
+      <div id="map_button" class="map_button">
+            <input type="button" value="Show map" id="show_map" class="show_map">
+      </div>
+
+
 
       <table id="game_map" class="game_map" border=1>
 
       </table>
-
-      <script src="/JS/api.js"></script>
       <script src="/JS/script.js"></script>
 
 </body>

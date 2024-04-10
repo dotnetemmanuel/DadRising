@@ -62,31 +62,31 @@ function ChangeImage() {
 	let characterImage = document.getElementById("character_image");
 
 	let imageMap = {
-		"0,0": "/images/rooms/0-0.jpg",
-		"0,1": "/images/rooms/0-1.jpg",
-		"0,2": "/images/rooms/0-2.jpg",
-		"0,3": "/images/rooms/0-3.jpg",
-		"0,4": "/images/rooms/0-4.jpg",
-		"1,0": "/images/rooms/1-0.jpg",
-		"1,1": "/images/rooms/1-1.jpg",
-		"1,2": "/images/rooms/1-2.jpg",
-		"1,3": "/images/rooms/1-3.jpg",
-		"1,4": "/images/rooms/1-4.jpg",
-		"2,0": "/images/rooms/2-0.jpg",
-		"2,1": "/images/rooms/2-1.jpg",
-		"2,2": "/images/rooms/2-2.jpg",
-		"2,3": "/images/rooms/2-3.jpg",
-		"2,4": "/images/rooms/2-4.jpg",
-		"3,0": "/images/rooms/3-0.jpg",
-		"3,1": "/images/rooms/3-1.jpg",
-		"3,2": "/images/rooms/3-2.jpg",
-		"3,3": "/images/rooms/3-3.jpg",
-		"3,4": "/images/rooms/3-4.jpg",
-		"4,0": "/images/rooms/4-0.jpg",
-		"4,1": "/images/rooms/4-1.jpg",
-		"4,2": "/images/rooms/4-2.jpg",
-		"4,3": "/images/rooms/4-3.jpg",
-		"4,4": "/images/rooms/4-4.jpg",
+		"0,0": "./images/rooms/0-0.jpg",
+		"0,1": "./images/rooms/0-1.jpg",
+		"0,2": "./images/rooms/0-2.jpg",
+		"0,3": "./images/rooms/0-3.jpg",
+		"0,4": "./images/rooms/0-4.jpg",
+		"1,0": "./images/rooms/1-0.jpg",
+		"1,1": "./images/rooms/1-1.jpg",
+		"1,2": "./images/rooms/1-2.jpg",
+		"1,3": "./images/rooms/1-3.jpg",
+		"1,4": "./images/rooms/1-4.jpg",
+		"2,0": "./images/rooms/2-0.jpg",
+		"2,1": "./images/rooms/2-1.jpg",
+		"2,2": "./images/rooms/2-2.jpg",
+		"2,3": "./images/rooms/2-3.jpg",
+		"2,4": "./images/rooms/2-4.jpg",
+		"3,0": "./images/rooms/3-0.jpg",
+		"3,1": "./images/rooms/3-1.jpg",
+		"3,2": "./images/rooms/3-2.jpg",
+		"3,3": "./images/rooms/3-3.jpg",
+		"3,4": "./images/rooms/3-4.jpg",
+		"4,0": "./images/rooms/4-0.jpg",
+		"4,1": "./images/rooms/4-1.jpg",
+		"4,2": "./images/rooms/4-2.jpg",
+		"4,3": "./images/rooms/4-3.jpg",
+		"4,4": "./images/rooms/4-4.jpg",
 	};
 
 	if (imageMap[playerPosition]) {
@@ -110,7 +110,7 @@ function ChangeImage() {
 				characterImage.style.opacity = "0";
 
 				setTimeout(() => {
-					characterImage.setAttribute("src", "/images/characters/mom.png");
+					characterImage.setAttribute("src", "./images/characters/mom.png");
 					characterImage.style.opacity = "1";
 					characterImage.style.zIndex = 4;
 					roomImage.style.filter = "saturate(.2)";
@@ -125,7 +125,7 @@ function ChangeImage() {
 				characterImage.style.opacity = "0";
 
 				setTimeout(() => {
-					characterImage.setAttribute("src", "/images/characters/child1.png");
+					characterImage.setAttribute("src", "./images/characters/child1.png");
 					characterImage.style.opacity = "1";
 					characterImage.style.zIndex = 4;
 					roomImage.style.filter = "saturate(.2)";
@@ -140,7 +140,7 @@ function ChangeImage() {
 				characterImage.style.opacity = "0";
 
 				setTimeout(() => {
-					characterImage.setAttribute("src", "/images/characters/child2.png");
+					characterImage.setAttribute("src", "./images/characters/child2.png");
 					characterImage.style.opacity = "1";
 					characterImage.style.zIndex = 4;
 					roomImage.style.filter = "saturate(.2)";
@@ -154,7 +154,7 @@ function ChangeImage() {
 				characterImage.style.opacity = "0";
 
 				setTimeout(() => {
-					characterImage.setAttribute("src", "/images/characters/cat.png");
+					characterImage.setAttribute("src", "./images/characters/cat.png");
 					characterImage.style.opacity = "1";
 					characterImage.style.zIndex = 4;
 					roomImage.style.filter = "saturate(.2)";
@@ -169,7 +169,7 @@ function ChangeImage() {
 				characterImage.style.opacity = "0";
 
 				setTimeout(() => {
-					characterImage.setAttribute("src", "/images/characters/partner.png");
+					characterImage.setAttribute("src", "./images/characters/partner.png");
 					characterImage.style.opacity = "1";
 					characterImage.style.zIndex = 4;
 					roomImage.style.filter = "saturate(.2)";
@@ -210,42 +210,42 @@ function PlaceCharacters() {
 
 	dad = {
 		...GenerateUniquePosition(occupiedPositions),
-		image_source: "/images/dad.jpg",
+		image_source: "./images/dad.jpg",
 		name: "Dad",
 	};
 	occupiedPositions.push({ posX: dad.posX, posY: dad.posY });
 
 	mom = {
 		...GenerateUniquePosition(occupiedPositions),
-		image_source: "/images/mom.jpg",
+		image_source: "./images/mom.jpg",
 		name: "Mom",
 	};
 	occupiedPositions.push({ posX: mom.posX, posY: mom.posY });
 
 	partner = {
 		...GenerateUniquePosition(occupiedPositions),
-		image_source: "/images/partner.jpg",
+		image_source: "./images/partner.jpg",
 		name: "Kattis",
 	};
 	occupiedPositions.push({ posX: partner.posX, posY: partner.posY });
 
 	child1 = {
 		...GenerateUniquePosition(occupiedPositions),
-		image_source: "/images/child1.jpg",
+		image_source: "./images/child1.jpg",
 		name: "Saga",
 	};
 	occupiedPositions.push({ posX: child1.posX, posY: child1.posY });
 
 	child2 = {
 		...GenerateUniquePosition(occupiedPositions),
-		image_source: "/images/child2.jpg",
+		image_source: "./images/child2.jpg",
 		name: "Léon",
 	};
 	occupiedPositions.push({ posX: child2.posX, posY: child2.posY });
 
 	cat = {
 		...GenerateUniquePosition(occupiedPositions),
-		image_source: "/images/child3.jpg",
+		image_source: "./images/child3.jpg",
 		name: "Charlie",
 	};
 	occupiedPositions.push({ posX: cat.posX, posY: cat.posY });

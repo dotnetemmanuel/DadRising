@@ -261,7 +261,6 @@ function DrawGameMap() {
 	let gameMap = document.getElementById("game_map");
 	gameMap.innerHTML = "";
 	gameMapArr[player.posY][player.posX] = player.name;
-
 	gameMapArr[dad.posY][dad.posX] = dad.name;
 	gameMapArr[mom.posY][mom.posX] = mom.name;
 	gameMapArr[partner.posY][partner.posX] = partner.name;
@@ -371,8 +370,15 @@ function GoUp() {
 	} else {
 		gameMapArr[player.posY][player.posX] = "";
 		player.posY--;
+
 		ChangeImage();
 		CheckOccupied();
+		if (player.posY <= 0) {
+			buttonUp.style.opacity = 0;
+		}
+		if (player.posY < 4) {
+			buttonDown.style.opacity = 1;
+		}
 		DrawGameMap();
 		console.log(player.posY + " " + player.posX);
 	}
@@ -384,8 +390,15 @@ function GoDown() {
 	} else {
 		gameMapArr[player.posY][player.posX] = "";
 		player.posY++;
+
 		ChangeImage();
 		CheckOccupied();
+		if (player.posY > 0) {
+			buttonUp.style.opacity = 1;
+		}
+		if (player.posY >= 4) {
+			buttonDown.style.opacity = 0;
+		}
 		DrawGameMap();
 		console.log(player.posY + " " + player.posX);
 	}
@@ -399,6 +412,12 @@ function GoLeft() {
 		player.posX--;
 		ChangeImage();
 		CheckOccupied();
+		if (player.posX <= 0) {
+			buttonLeft.style.opacity = 0;
+		}
+		if (player.posX < 4) {
+			buttonRight.style.opacity = 1;
+		}
 		DrawGameMap();
 		console.log(player.posY + " " + player.posX);
 	}
@@ -412,6 +431,12 @@ function GoRight() {
 		player.posX++;
 		ChangeImage();
 		CheckOccupied();
+		if (player.posX > 0) {
+			buttonLeft.style.opacity = 1;
+		}
+		if (player.posX >= 4) {
+			buttonRight.style.opacity = 0;
+		}
 		DrawGameMap();
 		console.log(player.posY + " " + player.posX);
 	}

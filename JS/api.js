@@ -11,8 +11,8 @@ fetch(`https://api.api-ninjas.com/v1/dadjokes?limit=1`, {
 	.then((data) => {
 		dadJoke = data[0].joke;
 		let joke = document.getElementById("joke");
-            joke.style.fontStyle = "italic"
-            joke.innerHTML = dadJoke;
+		joke.style.fontStyle = "italic";
+		joke.innerHTML = dadJoke;
 		console.log(data[0].joke);
 		return data[0].joke;
 	})

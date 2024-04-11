@@ -151,7 +151,7 @@ input[type="image"] {
       width: 40px;
       justify-self: center;
       padding-bottom: 1.5rem;
-         
+
 }
 
 .button_down {
@@ -165,7 +165,7 @@ input[type="image"] {
 .button_left {
       grid-row: 1;
       grid-column: 1;
-      height: 40px;
+      max-height: 40px;
       width: 40px;
       justify-self: end;
       align-self: center;
@@ -174,7 +174,7 @@ input[type="image"] {
 .button_right {
       grid-row: 1;
       grid-column: 3;
-      height: 40px;
+      max-height: 40px;
       width: 40px;
       justify-self: start;
       align-self: center;
@@ -280,7 +280,7 @@ td {
       }
 
       .button_down {
-            align-self: start;
+
             grid-row: 3;
       }
 
@@ -345,7 +345,6 @@ td {
       }
 
       .replay {
-            
             grid-row: 5;
       }
 }

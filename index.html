@@ -17,15 +17,25 @@
 
       <div id="overlay" class="overlay" style="display: none">
             <section id="game_over" class="game_over">
-                  <img src="./images/characters/dad.png" alt="" id="dad" class="dad">
+                  <img src="./images/characters/dad.png" alt="dad" id="game_over_image" class="game_over_image">
                   <p id="game_over_message" class="game_over_message">Your dad! He is euphoric and knocks you out with a
                         30 year-old joke:<br><br><span id="joke" class="joke"></span></p>
                   <br>
                   <h1 id="game_over_header" class="game_over_header">Game Over</h1>
 
                   <p id="final_score_header" class="final_score_header">Final score: <span id="final_score"
+                              class="final_score_game_over"></span> </p>
+                  <input type="button" value="Play again" id="replay_game_over" class="replay">
+            </section>
+            <section id="victory" class="victory">
+                  <img src="./images/characters/player.png" alt="player" id="victory" class="victory_image">
+                  <p id="game_over_message" class="game_over_message">Congratulations, you managed to save the whole family from a certain doom!</p>
+                  <br>
+                  <h1 id="victory_header" class="victory_header">You win!</h1>
+
+                  <p id="final_score_header" class="final_score_header">Final score: <span id="final_score_victory"
                               class="final_score"></span> </p>
-                  <input type="button" value="Play again" id="replay" class="replay">
+                  <input type="button" value="Play again" id="replay_victory" class="replay">
             </section>
       </div>
 

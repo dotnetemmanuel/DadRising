@@ -38,8 +38,11 @@ buttonRight.addEventListener("click", GoRight);
 let showMap = document.getElementById("show_map");
 showMap.addEventListener("click", ShowMap);
 
-let replay = document.getElementById("replay");
-replay.addEventListener("click", Reload);
+let replayGameOver = document.getElementById("replay_game_over");
+replayGameOver.addEventListener("click", Reload);
+
+let replayVictory = document.getElementById("replay_victory");
+replayVictory.addEventListener("click", Reload);
 
 // FUNCTIONS
 function Reload() {
@@ -183,7 +186,6 @@ function RandomizePosition() {
 	const randomPosArray = [0, 1, 2, 3, 4];
 	return randomPosArray[Math.floor(Math.random() * randomPosArray.length)];
 }
-
 function GenerateUniquePosition(occupiedPositions) {
 	let posX = RandomizePosition();
 	let posY = RandomizePosition();
@@ -198,7 +200,6 @@ function GenerateUniquePosition(occupiedPositions) {
 
 	return { posX, posY };
 }
-
 function PlaceCharacters() {
 	player = {
 		posX: 2,
@@ -219,6 +220,7 @@ function PlaceCharacters() {
 		...GenerateUniquePosition(occupiedPositions),
 		image_source: "./images/mom.jpg",
 		name: "Mom",
+		points: 2,
 	};
 	occupiedPositions.push({ posX: mom.posX, posY: mom.posY });
 
@@ -226,6 +228,7 @@ function PlaceCharacters() {
 		...GenerateUniquePosition(occupiedPositions),
 		image_source: "./images/partner.jpg",
 		name: "Kattis",
+		points: 5,
 	};
 	occupiedPositions.push({ posX: partner.posX, posY: partner.posY });
 
@@ -233,6 +236,7 @@ function PlaceCharacters() {
 		...GenerateUniquePosition(occupiedPositions),
 		image_source: "./images/child1.jpg",
 		name: "Saga",
+		points: 10,
 	};
 	occupiedPositions.push({ posX: child1.posX, posY: child1.posY });
 
@@ -240,6 +244,7 @@ function PlaceCharacters() {
 		...GenerateUniquePosition(occupiedPositions),
 		image_source: "./images/child2.jpg",
 		name: "Léon",
+		points: 10,
 	};
 	occupiedPositions.push({ posX: child2.posX, posY: child2.posY });
 
@@ -247,6 +252,7 @@ function PlaceCharacters() {
 		...GenerateUniquePosition(occupiedPositions),
 		image_source: "./images/child3.jpg",
 		name: "Charlie",
+		points: 1,
 	};
 	occupiedPositions.push({ posX: cat.posX, posY: cat.posY });
 }
@@ -277,24 +283,70 @@ function DrawGameMap() {
 	}
 }
 
+let savedCharacters = [];
+
 function CheckOccupied() {
 	let message = document.getElementById("message");
 	let overlay = document.getElementById("overlay");
-	let finalScore = document.getElementById("final_score");
+	let gameOver = document.getElementById("game_over");
+	let victory = document.getElementById("victory");
+	let finalScoreGameOver = document.getElementById("final_score_game_over");
+	let finalScoreVictory = document.getElementById("final_score_victory");
 	let scoreCount = document.getElementById("score");
 
 	if (gameMapArr[player.posY][player.posX] !== "") {
-		if (gameMapArr[player.posY][player.posX] !== "Dad") {
-			score++;
+		if (savedCharacters.includes(gameMapArr[player.posY][player.posX])) {
 			message.style.transition = "opacity 2400ms ease-in-out";
 			message.style.opacity = "0";
+
 			setTimeout(() => {
-				message.innerHTML = `<br>You have found and saved ${
+				message.innerHTML = `<br>You have already saved ${
 					gameMapArr[player.posY][player.posX]
 				}!`;
 				message.style.opacity = "1";
-				scoreCount.innerHTML = `Score: ${score}`;
 			}, 2400);
+		} else {
+			if (gameMapArr[player.posY][player.posX] !== "Dad") {
+				let character = gameMapArr[player.posY][player.posX];
+				let characterPoints = 0;
+
+				if (character === "Mom") {
+					characterPoints = mom.points;
+					mom.points = 0;
+				} else if (character === "Kattis") {
+					characterPoints = partner.points;
+					partner.points = 0;
+				} else if (character === "Saga") {
+					characterPoints = child1.points;
+					child1.points = 0;
+				} else if (character === "Léon") {
+					characterPoints = child2.points;
+					child2.points = 0;
+				} else if (character === "Charlie") {
+					characterPoints = cat.points;
+					cat.points = 0;
+				}
+
+				score += characterPoints;
+				savedCharacters.push(character);
+				message.style.transition = "opacity 2400ms ease-in-out";
+				message.style.opacity = "0";
+
+				setTimeout(() => {
+					message.innerHTML = `<br>You have found and saved ${character}!`;
+					message.style.opacity = "1";
+					scoreCount.innerHTML = `Score: ${score}`;
+					if (savedCharacters.length >= 5) {
+						overlay.style.transition = "opacity 2400ms ease-in-out";
+
+						setTimeout(() => {
+							overlay.style.display = "grid";
+							game_over.style.display = "none";
+							finalScoreVictory.innerHTML = score;
+						}, 2400);
+					}
+				}, 2400);
+			}
 		}
 
 		if (
@@ -304,7 +356,8 @@ function CheckOccupied() {
 
 			setTimeout(() => {
 				overlay.style.display = "grid";
-				finalScore.innerHTML = score;
+				victory.style.display = "none";
+				finalScoreGameOver.innerHTML = score;
 			}, 2400);
 		}
 	} else {

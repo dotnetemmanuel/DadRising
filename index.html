@@ -28,6 +28,7 @@
                   <input type="button" value="Play again" id="replay" class="replay">
             </section>
       </div>
+
       <h1 id="title" class="title">Dad Rising: A Family Adventure</h1>
       <p>Hello, Emmanuel!</p>
       <p>You have now arrived at the family's summer house. Your parents will stay here with you for a few weeks. The
@@ -38,19 +39,20 @@
             anywhere, ready to crack anyone up! Will you be able to save them in time? Will you be able to save
             yourself?</p>
 
-
       <main class="main">
-            <input type="button" value="🞁" id="button_up" class="button_up">
-            <input type="button" value="🞃" id="button_down" class="button_down">
-
+            <input type="image" id="button_up" class="button_up" src="./images/icons/up-arrow.svg" alt="Button up">
+            <input type="image" id="button_down" class="button_down" src="./images/icons/down-arrow.svg"
+                  alt="Button down">
 
             <section id="image_container" class="image_container">
-                  <input type="button" value="🞀" id="button_left" class="button_left">
-
+                  <input type="image" id="button_left" class="button_left" src="./images/icons/left-arrow.svg"
+                        alt="Button left">
                   <img id="room_image" class="room_image" src="./images/rooms/2-2.jpg" alt="Room">
                   <img id="character_image" class="character_image" src="" alt="Character">
-                  <input type="button" value="🞂" id="button_right" class="button_right">
+                  <input type="image" id="button_right" class="button_right" src="./images/icons/right-arrow.svg"
+                        alt="Button right">
             </section>
+
             <section id="game_session" class="game_session">
                   <section id="score_section" class="score_section">
                         <p id="score" class="score"></p>
@@ -62,14 +64,10 @@
             </section>
 
       </main>
-      <!-- style="filter: brightness(0%);" -->
-      
 
       <div id="map_button" class="map_button">
             <input type="button" value="Show map" id="show_map" class="show_map">
       </div>
-
-
 
       <table id="game_map" class="game_map" border=1>
 

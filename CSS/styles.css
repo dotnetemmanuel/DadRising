@@ -64,6 +64,7 @@ h1 {
 .victory_message {
       grid-column: 2;
       grid-row: 1;
+      align-self: center;
       font-size: 1.5rem
 }
 
@@ -149,13 +150,17 @@ input[type="image"] {
       color: var(--dark-grey);
 }
 
+input[type="image"]:active {
+      scale: .9;
+}
+
+
 .button_up {
       grid-row: 1;
       grid-column: 1;
       width: 40px;
       justify-self: center;
       padding-bottom: 1.5rem;
-
 }
 
 .button_down {

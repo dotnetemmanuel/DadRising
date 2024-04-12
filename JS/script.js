@@ -356,7 +356,11 @@ function CheckOccupied() {
 			setTimeout(() => {
 				overlay.style.display = "grid";
 				victory.style.display = "none";
-				finalScoreGameOver.innerHTML = score;
+				if (score === 0) {
+					finalScoreGameOver.innerHTML = 0;
+				} else {
+					finalScoreGameOver.innerHTML = score;
+				}
 			}, 2400);
 		}
 	} else {

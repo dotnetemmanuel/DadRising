@@ -1,6 +1,6 @@
 var dadJoke;
 
-fetch(`https://api.api-ninjas.com/v1/dadjokes?limit=1`, {
+fetch(`https://api.api-ninjas.com/v1/dadjokes`, {
 	method: "GET",
 	headers: {
 		"X-Api-Key": "oV70/R/OjomCpenizwCmyA==25fn2IoVRLpaHjTD",
